@@ -1,22 +1,10 @@
-function throttling(fn:()=>void,timer:number){
-    let prevTime:null|number = null;
-    return function(){
-        let currTime = Date.now();
-        if (prevTime){
-            if (currTime-prevTime>=timer){
-                prevTime=currTime;
-                fn();
-            }
-            return;
-        }
-        else prevTime=currTime;
-    }
-}
+import throttling from "./implementations/throttling";
 
-const tt = throttling(()=>console.log("hello"),3000);
-let t=1;
+const tt = throttling(()=>console.log("hello world"),3000);
+
+let time = 1;
 setInterval(()=>{
+    console.log(time);
     tt();
-    console.log(t)
-    t++;
-},1000)
+    time++;
+},1000);
